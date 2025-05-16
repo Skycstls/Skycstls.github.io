@@ -1,12 +1,9 @@
-name: Despliegue aplicación de Unity
+name: Despliegue GitHub Pages
 
 on:
   push:
     branches:
       - master  # Cambia a "master" si usas ese nombre
-
-permissions:
-  contents: write
 
 jobs:
   build-and-deploy:
