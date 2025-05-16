@@ -1,4 +1,4 @@
-name: Despliegue aplicación de Unity
+name: CI/CD Nunjucks
 
 on:
   push:
@@ -16,8 +16,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Instalar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22.12'  # Cambia a la versión de Node.js que necesites
+      - name: Instalar dependencias
+        run: npm install
+      - name: Generar archivos estáticos
+        run: npm run build  # Cambia esto si tu script de build tiene otro nombre
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: .  # Cambia esto si tu build genera otra carpeta
+          publish_dir: ./dist  # Cambia esto si tu build genera otra carpeta
