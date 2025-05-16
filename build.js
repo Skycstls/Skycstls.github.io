@@ -2,11 +2,29 @@ import {menu} from './menu.js';
 import nunjucks from 'nunjucks';
 import fs from 'fs';
 
-const templateFile = 'menu.njk';
-const outputFile = './dist/index.html';
+function generateHTML(template, data) {
+    const templateContent = fs.readFileSync(template, 'utf-8');
+    const html = nunjucks.renderString(templateContent, data);
+    return html;
+}
+function createHTMLFile(template, data, outputFile) {
+    const html = generateHTML(template, data);
+    fs.writeFileSync(outputFile, html, 'utf-8');
+    console.log(`Archivo ${outputFile} generado con éxito.`);
+}
 
-nunjucks.configure({ autoescape: true });
+if (!fs.existsSync('./dist')) {
+    fs.mkdirSync('./dist');
+}
+const menuTemplate = './views/menu.njk';
+const aboutTemplate = './views/about.njk';
+nunjucks.configure("views",{ autoescape: true });
 
-const templateContent = fs.readFileSync(templateFile, 'utf-8');
-const renderedContent = nunjucks.renderString(templateContent, { menu });
-console.log(renderedContent);
+createHTMLFile(menuTemplate, { menu }, './dist/index.html');
+createHTMLFile(menuTemplate, { menu }, './dist/menu.html');
+createHTMLFile(aboutTemplate, {}, './dist/about.html');
+
+
+const cssFile = 'style.css';
+const outputCssFile = './dist/style.css';
+fs.copyFileSync(cssFile, outputCssFile);

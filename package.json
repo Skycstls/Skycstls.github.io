@@ -5,7 +5,7 @@
   "main": "menu.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "mkdir dist 2> /dev/null; node build.js > dist/index.html;cp style.css dist/style.css; cp -r imgs dist/imgs;"
+    "build": "node build.js"
   },
   "keywords": [],
   "author": "",
