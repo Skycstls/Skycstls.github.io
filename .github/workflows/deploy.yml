@@ -1,4 +1,4 @@
-name: Deploy 11ty to GitHub Pages
+name: Despliegue aplicación de Unity
 
 on:
   push:
