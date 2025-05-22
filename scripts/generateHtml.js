@@ -2,7 +2,6 @@ import fs from 'fs'
 import nunjucks from 'nunjucks'
 import { createDirectoryIfNotExists, copyDirectory } from './utils.js'
 import { menu } from '../menu.js'
-import { create } from 'domain'
 export function generateHTML (template, data) {
   const templateContent = fs.readFileSync(template, 'utf-8')
   const html = nunjucks.renderString(templateContent, data)
