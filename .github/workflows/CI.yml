@@ -30,6 +30,9 @@ jobs:
       - name: Lanzar linter
         run: npm run lint 
 
+      - name: Lanzar build
+        run: npm run build
+
       - name: Desplegar en GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
