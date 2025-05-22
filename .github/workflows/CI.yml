@@ -1,0 +1,36 @@
+name: CI/CD Nunjucks
+
+on:
+  push:
+    branches:
+      - master  # Cambia a "master" si usas ese nombre
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Instalar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22.12'  # Cambia a la versión de Node.js que necesites
+      - name: Instalar dependencias
+        run: npm install
+      - name: Run tests
+        run: npm test  # Cambia esto si tu script de test tiene otro nombre
+      - name: Run linter
+        run: npm run lint:fix  # Cambia esto si tu script de lint tiene otro nombre
+      # create a PR with the lint changes
+      - name: Create PR for lint changes
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email ""
+          git add .
+          git commit -m "fix: lint changes"
+          git push origin HEAD:master

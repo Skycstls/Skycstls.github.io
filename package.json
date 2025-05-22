@@ -1,0 +1,24 @@
+{
+  "name": "menu",
+  "version": "1.0.0",
+  "description": "",
+  "main": "menu.js",
+  "scripts": {
+    "lint": "standard",
+    "lint:fix": "standard --fix",
+    "test": "npx vitest --coverage",
+    "build": "node build.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "nunjucks": "^3.2.4",
+    "standard": "^17.1.2"
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "^3.1.4",
+    "vitest": "^3.1.4"
+  }
+}
